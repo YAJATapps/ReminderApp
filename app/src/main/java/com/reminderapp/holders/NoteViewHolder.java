@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.reminderapp.ui;
+package com.reminderapp.holders;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.reminderapp.R;
 
-class NoteViewHolder extends RecyclerView.ViewHolder {
+public class NoteViewHolder extends RecyclerView.ViewHolder {
     private final TextView noteItemView;
 
     private NoteViewHolder(View itemView) {
@@ -38,14 +38,14 @@ class NoteViewHolder extends RecyclerView.ViewHolder {
         noteItemView.setText(text);
     }
 
-    static NoteViewHolder create(ViewGroup parent) {
+    public static NoteViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.note_item, parent, false);
         view.setOnClickListener((View v) -> Toast.makeText(parent.getContext(), "toast", Toast.LENGTH_SHORT).show());
         return new NoteViewHolder(view);
     }
 
-    static NoteViewHolder createEmptyView(ViewGroup parent) {
+    public static NoteViewHolder createEmptyView(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_empty, parent, false);
         return new NoteViewHolder(view);

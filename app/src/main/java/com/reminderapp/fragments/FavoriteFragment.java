@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.reminderapp.R;
 import com.reminderapp.database.NoteViewModel;
-import com.reminderapp.ui.NoteAdapter;
+import com.reminderapp.adapters.NoteAdapter;
 
 public class FavoriteFragment extends Fragment {
 

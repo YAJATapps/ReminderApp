@@ -1,10 +1,11 @@
-package com.reminderapp.ui;
+package com.reminderapp.adapters;
 
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.reminderapp.database.Note;
+import com.reminderapp.holders.NoteViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
