@@ -1,6 +1,6 @@
 package com.reminderapp;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
@@ -8,10 +8,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.reminderapp.database.Note;
-import com.reminderapp.database.NoteViewModel;
 
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    private NoteViewModel noteViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +28,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Init the view model for notes.
-        noteViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
-
         // Add note to db
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            Note note = new Note(
-                    "Note",
-                    "Description ..",
-                    Color.BLACK,
-                    1f, false, false
-            );
-            noteViewModel.insert(note);
+            Intent myIntent = new Intent(MainActivity.this, NoteActivity.class);
+            myIntent.putExtra("id", -1);
+            startActivity(myIntent);
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
