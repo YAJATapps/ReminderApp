@@ -4,32 +4,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.reminderapp.R;
+import com.reminderapp.database.NoteViewModel;
+import com.reminderapp.ui.NoteAdapter;
 
 public class FinishedFragment extends Fragment {
 
-    private FinishedViewModel FinishedViewModel;
+    private NoteViewModel noteViewModel;
+    private NoteAdapter mAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        FinishedViewModel =
-                new ViewModelProvider(this).get(FinishedViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_finished, container, false);
-        final TextView textView = root.findViewById(R.id.text_finished);
-        FinishedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
+        noteViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_list, container, false);
+        RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new NoteAdapter();
+        recyclerView.setAdapter(mAdapter);
+        noteViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
+            // Update the cached copy of the notes in the adapter.
+            mAdapter.setNotesList(notes,2);
+            mAdapter.notifyDataSetChanged();
         });
+
         return root;
     }
 }

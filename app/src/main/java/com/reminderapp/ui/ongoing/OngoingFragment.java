@@ -23,14 +23,14 @@ public class OngoingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         noteViewModel = new ViewModelProvider(this).get(NoteViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_ongoing, container, false);
+        View root = inflater.inflate(R.layout.fragment_list, container, false);
         RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new NoteAdapter();
         recyclerView.setAdapter(mAdapter);
         noteViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
             // Update the cached copy of the notes in the adapter.
-            mAdapter.setNotesList(notes);
+            mAdapter.setNotesList(notes,0);
             mAdapter.notifyDataSetChanged();
         });
 
