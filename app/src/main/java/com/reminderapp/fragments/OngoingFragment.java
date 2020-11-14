@@ -1,4 +1,4 @@
-package com.reminderapp.ui.ongoing;
+package com.reminderapp.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

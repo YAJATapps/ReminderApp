@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_ongoing"
-        android:name="com.reminderapp.ui.ongoing.OngoingFragment"
+        android:name="com.reminderapp.fragments.OngoingFragment"
         android:label="@string/menu_ongoing"
-        tools:layout="@layout/fragment_ongoing" />
+        tools:layout="@layout/fragment_list" />
 
     <fragment
         android:id="@+id/nav_favorite"
-        android:name="com.reminderapp.ui.favorite.FavoriteFragment"
+        android:name="com.reminderapp.fragments.FavoriteFragment"
         android:label="@string/menu_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_list" />
 
     <fragment
         android:id="@+id/nav_finished"
-        android:name="com.reminderapp.ui.finished.FinishedFragment"
+        android:name="com.reminderapp.fragments.FinishedFragment"
         android:label="@string/menu_finished"
-        tools:layout="@layout/fragment_finished" />
+        tools:layout="@layout/fragment_list" />
 </navigation>
