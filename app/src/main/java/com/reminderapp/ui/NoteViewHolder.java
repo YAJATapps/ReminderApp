@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +41,7 @@ class NoteViewHolder extends RecyclerView.ViewHolder {
     static NoteViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.note_item, parent, false);
+        view.setOnClickListener((View v) -> Toast.makeText(parent.getContext(), "toast", Toast.LENGTH_SHORT).show());
         return new NoteViewHolder(view);
     }
 }

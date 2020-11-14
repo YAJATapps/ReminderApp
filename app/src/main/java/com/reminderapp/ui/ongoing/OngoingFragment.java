@@ -18,6 +18,7 @@ import com.reminderapp.ui.NoteAdapter;
 public class OngoingFragment extends Fragment {
 
     private NoteViewModel noteViewModel;
+    private NoteAdapter mAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -25,11 +26,12 @@ public class OngoingFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_ongoing, container, false);
         RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        NoteAdapter mAdapter = new NoteAdapter();
+        mAdapter = new NoteAdapter();
         recyclerView.setAdapter(mAdapter);
         noteViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
             // Update the cached copy of the notes in the adapter.
             mAdapter.setNotesList(notes);
+            mAdapter.notifyDataSetChanged();
         });
 
         return root;

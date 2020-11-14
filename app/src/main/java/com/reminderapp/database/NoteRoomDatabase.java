@@ -50,34 +50,10 @@ abstract class NoteRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             NoteRoomDatabase.class, "note_database")
-                            .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
         }
         return INSTANCE;
     }
-
-    /**
-     * Override the onCreate method to populate the database.
-     * For this sample, we clear the database every time it is created.
-     */
-    private static NoteRoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more notes, just add them.
-                NoteDao dao = INSTANCE.noteDao();
-                dao.deleteAll();
-
-                Note note = new Note("Hello");
-                dao.insert(note);
-                note = new Note("World");
-                dao.insert(note);
-            });
-        }
-    };
 }
