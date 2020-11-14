@@ -44,4 +44,10 @@ class NoteViewHolder extends RecyclerView.ViewHolder {
         view.setOnClickListener((View v) -> Toast.makeText(parent.getContext(), "toast", Toast.LENGTH_SHORT).show());
         return new NoteViewHolder(view);
     }
+
+    static NoteViewHolder createEmptyView(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.fragment_empty, parent, false);
+        return new NoteViewHolder(view);
+    }
 }

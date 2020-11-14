@@ -11,4 +11,6 @@
     <string name="menu_ongoing">On going</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_finished">Finished</string>
+
+    <string name="empty_list">This list is empty. Press the add button to add new items.</string>
 </resources>

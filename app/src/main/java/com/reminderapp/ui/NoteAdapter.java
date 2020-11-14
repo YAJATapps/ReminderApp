@@ -11,6 +11,7 @@ import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
+    // The list of notes
     private List<Note> mNotes;
 
     /**
@@ -39,19 +40,33 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         mNotes = list;
     }
 
+    // View to show when list is empty
+    private final int EMPTY_LIST_VIEW = 100;
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mNotes == null || mNotes.size() == 0)
+            return EMPTY_LIST_VIEW;
+        return super.getItemViewType(position);
+    }
+
     @Override
     public NoteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == EMPTY_LIST_VIEW)
+            return NoteViewHolder.createEmptyView(parent);
+
         return NoteViewHolder.create(parent);
     }
 
     @Override
     public void onBindViewHolder(NoteViewHolder holder, int position) {
-        holder.bind(mNotes.get(position).title);
+        if (holder.getItemViewType() != EMPTY_LIST_VIEW)
+            holder.bind(mNotes.get(position).title);
     }
 
     @Override
     public int getItemCount() {
-        return mNotes == null ? 0 : mNotes.size();
+        return mNotes == null || mNotes.size() == 0 ? 1 : mNotes.size();
     }
 
 }
