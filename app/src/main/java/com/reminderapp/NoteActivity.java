@@ -41,9 +41,7 @@ public class NoteActivity extends AppCompatActivity {
                 EditText content = findViewById(R.id.note_content);
                 if (title.getText().toString().length() > 0) {
                     Note note = new Note(title.getText().toString(),
-                            content.getText().toString(),
-                            Color.BLACK,
-                            1f, false, false
+                            content.getText().toString(), false, false
                     );
                     noteViewModel.insert(note);
                 } else {

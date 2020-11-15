@@ -50,16 +50,6 @@ public class Note {
     @ColumnInfo(name = "noteContent")
     public String noteContent;
 
-    // The color of note
-    @NonNull
-    @ColumnInfo(name = "noteColor")
-    public int noteColor;
-
-    // The factor of note
-    @NonNull
-    @ColumnInfo(name = "noteSizeFactor")
-    public float noteSizeFactor;
-
     // Whether the note is favorite
     public boolean favorite;
 
@@ -67,17 +57,15 @@ public class Note {
     public boolean finished;
 
     // The main constructor
-    public Note(@NonNull String note, String content, int color, float factor, boolean favorite, boolean finished) {
+    public Note(@NonNull String note, String content, boolean favorite, boolean finished) {
         this.title = note;
         this.noteContent = content;
-        this.noteColor = color;
-        this.noteSizeFactor = factor;
         this.favorite = favorite;
         this.finished = finished;
     }
 
     // Dummy constructor
     public Note() {
-        this("Empty", "", Color.BLACK, 1f, false, false);
+        this("Empty", "", false, false);
     }
 }
