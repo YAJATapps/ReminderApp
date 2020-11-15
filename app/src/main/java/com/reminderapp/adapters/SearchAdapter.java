@@ -38,7 +38,7 @@ public class SearchAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         ArrayList<Note> list = new ArrayList<>();
         if (mNotes != null && mNotes.size() > 0) {
             for (Note note : mNotes) {
-                if (note.title.contains(s)) {
+                if (note.title.toLowerCase().contains(s.toLowerCase())) {
                     list.add(note);
                 }
             }
