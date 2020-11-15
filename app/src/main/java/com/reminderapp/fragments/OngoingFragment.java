@@ -26,7 +26,7 @@ public class OngoingFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_list, container, false);
         RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new NoteAdapter();
+        mAdapter = new NoteAdapter(this);
         recyclerView.setAdapter(mAdapter);
         noteViewModel.getAllNotes().observe(getViewLifecycleOwner(), notes -> {
             // Update the cached copy of the notes in the adapter.

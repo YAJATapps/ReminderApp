@@ -5,11 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.PopupMenu;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.reminderapp.NoteActivity;
 import com.reminderapp.R;
 import com.reminderapp.database.Note;
+import com.reminderapp.database.NoteViewModel;
 import com.reminderapp.holders.NoteViewHolder;
 
 import java.util.ArrayList;
@@ -19,6 +23,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     // The list of notes
     private List<Note> mNotes;
+
+    private final Fragment noteFragment;
+
+    public NoteAdapter(Fragment fragment) {
+        noteFragment = fragment;
+    }
 
     /**
      * Sets the list according to current mode
@@ -68,6 +78,18 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
             Intent myIntent = new Intent(v.getContext(), NoteActivity.class);
             myIntent.putExtra("id", mNotes.get(holder.getAdapterPosition()).id);
             v.getContext().startActivity(myIntent);
+        });
+        view.setOnLongClickListener((View v) -> {
+            PopupMenu popup = new PopupMenu(v.getContext(), v);
+            popup.getMenuInflater().inflate(R.menu.delete_menu, popup.getMenu());
+            popup.setOnMenuItemClickListener(item -> {
+                NoteViewModel noteViewModel = new ViewModelProvider(noteFragment).get(NoteViewModel.class);
+                noteViewModel.delete(mNotes.get(holder.getAdapterPosition()));
+                return true;
+            });
+            popup.show();
+
+            return true;
         });
         return holder;
     }
