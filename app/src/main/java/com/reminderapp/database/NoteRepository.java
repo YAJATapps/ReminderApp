@@ -17,6 +17,7 @@ package com.reminderapp.database;
  */
 
 import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
@@ -52,6 +53,18 @@ class NoteRepository {
     void insert(Note note) {
         NoteRoomDatabase.databaseWriteExecutor.execute(() -> {
             mNoteDao.insert(note);
+        });
+    }
+
+    void delete(Note note) {
+        NoteRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mNoteDao.deleteNote(note);
+        });
+    }
+
+    void update(Note note) {
+        NoteRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mNoteDao.updateNote(note);
         });
     }
 }

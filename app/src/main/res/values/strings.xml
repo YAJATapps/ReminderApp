@@ -17,4 +17,6 @@
     <string name="title_empty">Title cannot be empty</string>
     <string name="color">Color</string>
     <string name="size">Size</string>
+    <string name="unfavorite">Unfavorite</string>
+    <string name="unfinished">Unfinished</string>
 </resources>

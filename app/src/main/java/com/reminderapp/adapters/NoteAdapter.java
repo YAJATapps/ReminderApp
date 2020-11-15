@@ -1,9 +1,14 @@
 package com.reminderapp.adapters;
 
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.reminderapp.NoteActivity;
+import com.reminderapp.R;
 import com.reminderapp.database.Note;
 import com.reminderapp.holders.NoteViewHolder;
 
@@ -56,7 +61,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         if (viewType == EMPTY_LIST_VIEW)
             return NoteViewHolder.createEmptyView(parent);
 
-        return NoteViewHolder.create(parent);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.note_item, parent, false);
+        NoteViewHolder holder = new NoteViewHolder(view);
+        view.setOnClickListener((View v) -> {
+            Intent myIntent = new Intent(v.getContext(), NoteActivity.class);
+            myIntent.putExtra("id", mNotes.get(holder.getAdapterPosition()).id);
+            v.getContext().startActivity(myIntent);
+        });
+        return holder;
     }
 
     @Override

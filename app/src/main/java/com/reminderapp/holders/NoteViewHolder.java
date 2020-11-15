@@ -20,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,20 +28,13 @@ import com.reminderapp.R;
 public class NoteViewHolder extends RecyclerView.ViewHolder {
     private final TextView noteItemView;
 
-    private NoteViewHolder(View itemView) {
+    public NoteViewHolder(View itemView) {
         super(itemView);
         noteItemView = itemView.findViewById(R.id.note_name);
     }
 
     public void bind(String text) {
         noteItemView.setText(text);
-    }
-
-    public static NoteViewHolder create(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.note_item, parent, false);
-        view.setOnClickListener((View v) -> Toast.makeText(parent.getContext(), "toast", Toast.LENGTH_SHORT).show());
-        return new NoteViewHolder(view);
     }
 
     public static NoteViewHolder createEmptyView(ViewGroup parent) {

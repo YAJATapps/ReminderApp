@@ -17,6 +17,7 @@ package com.reminderapp.database;
  */
 
 import android.app.Application;
+
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
@@ -48,5 +49,21 @@ public class NoteViewModel extends AndroidViewModel {
 
     public void insert(Note note) {
         mRepository.insert(note);
+    }
+
+    public void delete(Note note) {
+        mRepository.delete(note);
+    }
+
+    public void update(Note note) {
+        mRepository.update(note);
+    }
+
+    public static Note getNote(int id, List<Note> notes) {
+        for (Note i : notes) {
+            if (i.id == id)
+                return i;
+        }
+        return null;
     }
 }
