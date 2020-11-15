@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -52,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == 1) {
-            Toast.makeText(this, "Replace with your own search action", Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(this, SearchActivity.class);
+            startActivity(myIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
